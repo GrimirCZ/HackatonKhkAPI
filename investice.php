@@ -28,6 +28,8 @@
     }).addTo(map);
 
     L.marker([51.505, -0.09]).addTo(map);
+
+    L.tooltip({pane:'hey'}).addTo(map);
 </script>
 </body>
 </html>
