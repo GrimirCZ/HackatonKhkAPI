@@ -1,3 +1,3 @@
-# HackatonKhK
+# HackatonKhKAPI
 
 Matěj je top
