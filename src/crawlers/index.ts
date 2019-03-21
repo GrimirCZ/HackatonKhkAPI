@@ -55,4 +55,6 @@ export default async (regions: string[]) => {
     (await locationArea([...property])).forEach(val => regions.push(val));
 
     console.log("finished");
+
+    return regions;
 }

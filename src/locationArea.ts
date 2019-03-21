@@ -16,7 +16,8 @@ export default async (property: Property[]): Promise<string[]> => {
         // @ts-ignore
         const filtered: [] = (firstResponse.data.filter(
             (addr: any) =>
-                !!(addr.class === "boundary" && addr.display_name.includes("Královéhradecký kraj"))))[0];
+                !!(addr.class === "boundary" && addr.display_name.includes("Královéhradecký kraj"))
+        ))[0];
 
         filteredPlaces = filteredPlaces.concat(filtered)
 
