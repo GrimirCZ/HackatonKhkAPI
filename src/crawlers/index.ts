@@ -52,7 +52,7 @@ export default async (regions: string[]) => {
 
     console.log("getting geojsons...");
 
-    regions = await locationArea([...property]);
+    (await locationArea([...property])).forEach(val => regions.push(val));
 
     console.log("finished");
 }

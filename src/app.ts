@@ -8,7 +8,7 @@ import { Property } from "./interfaces/property";
 // Create a new express application instance
 const app = express();
 
-let regions: string[];
+let regions: any[];
 
 app.get('/', (req, res) => {
     res.send('Hello World!');

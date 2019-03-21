@@ -6,10 +6,12 @@ const axios = require("axios");
 export default async (property: Property[]): Promise<string[]> => {
     let filteredPlaces: any[] = [];
 
+    let i = 0;
     for(let building of property) {
         //console.log(encodeURI(`https://nominatim.openstreetmap.org/search?q=${building.address}&format=json&addressdetails=1`))
+        const url = `https://nominatim.openstreetmap.org/search?q=${building.address}&format=json&addressdetails=1`;
 
-        const firstResponse: object = await axios.get(encodeURI(`https://nominatim.openstreetmap.org/search?q=${building.address}&format=json&addressdetails=1`));
+        const firstResponse: object = await axios.get(encodeURI(url));
 
         // @ts-ignore
         const filtered: [] = (firstResponse.data.filter(
@@ -17,6 +19,10 @@ export default async (property: Property[]): Promise<string[]> => {
                 !!(addr.class === "boundary" && addr.display_name.includes("Královéhradecký kraj"))))[0];
 
         filteredPlaces = filteredPlaces.concat(filtered)
+
+        console.log(`${i}/${property.length}`);
+
+        i++;
     }
 
     //Clean of undefined and nulls
@@ -36,6 +42,8 @@ export default async (property: Property[]): Promise<string[]> => {
     filteredPlaces = temp;
 
     filteredPlaces = filteredPlaces.map((val, index) => JSON.stringify({id: index, ...val}));
+
+    console.log(`got ${filteredPlaces.length} places...`)
 
     return filteredPlaces;
 }
