@@ -41,9 +41,9 @@ export default async (property: Property[]): Promise<string[]> => {
 
     filteredPlaces = temp;
 
-    filteredPlaces = filteredPlaces.map((val, index) => JSON.stringify({id: index, ...val}));
+    filteredPlaces = filteredPlaces.map((val, index) => ({id: index, ...val}));
 
-    console.log(`got ${filteredPlaces.length} places...`)
+    console.log(`got ${filteredPlaces.length} places...`);
 
     return filteredPlaces;
 }

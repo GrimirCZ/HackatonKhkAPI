@@ -8,7 +8,7 @@ export default async (regions: string[]) => {
     const browser: Browser = await puppeteer.launch(
         {
             args: ["--no-sandbox"],
-            headless: false,
+            //headless: false,
         });
 
     const page = await browser.newPage();
