@@ -9,7 +9,7 @@ export default async (property: Property[]): Promise<string[]> => {
     let i = 0;
     for(let building of property) {
         //console.log(encodeURI(`https://nominatim.openstreetmap.org/search?q=${building.address}&format=json&addressdetails=1`))
-        const url = `https://nominatim.openstreetmap.org/search?q=${building.address}&format=json&addressdetails=1`;
+        const url = `https://nominatim.openstreetmap.org/search?q=${building.address}&format=json&addressdetails=1&polygon_geojson=1`;
 
         const firstResponse: object = await axios.get(encodeURI(url));
 
