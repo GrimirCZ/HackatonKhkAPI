@@ -9,7 +9,7 @@ const app = express();
 
 let regions: any[] = [];
 
-app.use(cors);
+app.use(cors());
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
