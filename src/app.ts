@@ -1,14 +1,15 @@
 import "reflect-metadata";
 import express from 'express';
 import cron from 'node-cron';
-import puppeteer, { Browser } from 'puppeteer';
 import crawler from "./crawlers/index";
-import { Property } from "./interfaces/property";
+import cors from 'cors';
 
 // Create a new express application instance
 const app = express();
 
 let regions: any[] = [];
+
+app.use(cors);
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
