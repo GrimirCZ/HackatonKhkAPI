@@ -12,9 +12,6 @@ export default async (property: Property[]): Promise<string[]> => {
         const firstResponse: object = await axios.get(encodeURI(`https://nominatim.openstreetmap.org/search?q=${building.address}&format=json&addressdetails=1`));
 
         // @ts-ignore
-        /*firstResponse.data.forEach((addr: any) =>
-            console.log("class: ",addr.class," address: ", addr.address));*/
-
         const filtered: [] = (firstResponse.data.filter(
             (addr: any) =>
                 !!(addr.class === "boundary" && addr.display_name.includes("Královéhradecký kraj"))))[0];
@@ -38,7 +35,7 @@ export default async (property: Property[]): Promise<string[]> => {
 
     filteredPlaces = temp;
 
-    filteredPlaces = filteredPlaces.map((val, index) => ({id: index, ...val}));
+    filteredPlaces = filteredPlaces.map((val, index) => JSON.stringify({id: index, ...val}));
 
     return filteredPlaces;
 }

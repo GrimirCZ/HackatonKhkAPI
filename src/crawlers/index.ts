@@ -4,7 +4,7 @@ import crawler from "./crawlSection";
 import { Property } from "../interfaces/property";
 import locationArea from "../locationArea";
 
-export default async () => {
+export default async (regions: string[]) => {
     const browser: Browser = await puppeteer.launch(
         {
             args: ["--no-sandbox"],
@@ -52,5 +52,7 @@ export default async () => {
 
     console.log("getting geojsons...");
 
-    global.regions = await locationArea([...property]);
+    regions = await locationArea([...property]);
+
+    console.log("finished");
 }

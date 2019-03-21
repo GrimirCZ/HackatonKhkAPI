@@ -8,26 +8,30 @@ import { Property } from "./interfaces/property";
 // Create a new express application instance
 const app = express();
 
+let regions: string[];
+
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
-app.get('/property-for-sale', (req, res) => {
-    if(global.regions)
-        res.json({data: global.regions});
+app.get('/regions', (req, res) => {
+    if(regions)
+        res.json({data: regions});
     else
         res.json({
             data: []
         });
 });
 
-const crawlerTask = cron.schedule("* 30 * * * *", crawler);
+const crawlerTask = cron.schedule("* 30 * * * *", () => {
+    crawler(regions)
+});
 
 app.listen(3000, () => {
 
     //crawlerTask.start();
 
-    crawler();
+    crawler(regions);
 
     console.log('Example app listening on port 3000!');
 });
