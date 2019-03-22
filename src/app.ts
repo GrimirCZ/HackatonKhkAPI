@@ -26,10 +26,6 @@ app.get('/regions', (req, res) => {
         });
 });
 
-const crawlerTask = cron.schedule("* 30 * * * *", () => {
-    crawler(regions)
-});
-
 app.listen(3000, () => {
 
     //crawlerTask.start();
