@@ -4,6 +4,7 @@ import cron from 'node-cron';
 import crawler from "./crawlers/index";
 import cors from 'cors';
 import nezam from './nezam';
+import obyv from './obyv';
 
 const axios = require("axios");
 
@@ -35,6 +36,8 @@ app.listen(3000, () => {
 
         const nezamArray = nezam();
 
+        const popInCzechRepublic: any = obyv();
+
         regions = tempRegions.map((region: any) => {
             const accordLine = nezamArray.find((row: any) => row.uzemi_txt === region.addr.address.city);
 
@@ -43,7 +46,8 @@ app.listen(3000, () => {
 
             return {
                 ...region,
-                unemployedCount: accordLine.hodnota
+                unemployedCount: accordLine.hodnota,
+                population: popInCzechRepublic[region.addr.address.city] || -1
             }
         });
 
